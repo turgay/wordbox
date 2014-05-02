@@ -1,0 +1,15 @@
+
+Features
+--------
+- Support ab??  : 4-char works starting with ab.
+
+
+
+
+
+Bugs
+----
+
+- Dont let to list all words (character filter)
+
+

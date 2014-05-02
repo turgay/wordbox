@@ -1,0 +1,15 @@
+2014-05-02 21:23:42,940 - [INFO] - from play in pool-32-thread-5 
+Listening for HTTP on /0:0:0:0:0:0:0:0%0:9000
+
+2014-05-02 21:23:52,569 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:wordbox.db
+
+2014-05-02 21:23:52,900 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-05-02 21:29:38,216 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:wordbox.db
+
+2014-05-02 21:29:38,230 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+

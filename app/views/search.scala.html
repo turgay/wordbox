@@ -1,0 +1,80 @@
+@(currentPage: Page[Word], currentFilter: String)(implicit flash: Flash)
+@import helper._
+@import helper.twitterBootstrap._
+
+@link(newPage: Int) = @{
+    routes.Words.search(page=newPage, word=currentFilter)
+}
+
+@main("WordBox"){
+      <div class="row clearfix">
+		<div class="col-md-12 column">
+		<div class="row jumbotron">
+			<div class="row clearfix">
+				<div class="col-md-2 column">
+				</div>
+				<div class="col-md-8 column">
+				<h3 class="text-center">Search Words</h3>
+				 @helper.form(action=routes.Words.search(), 'class -> "form-inline") {
+	  	 	<div class="controls">
+	  	 	<div class="input-group">
+      			<input type="search" name="word"  class = "form-control" placeholder="Enter a pattern...">
+     			<span class="input-group-btn">
+    		    	<button class="btn btn-default" type="button">  Search  </button>
+      			</span>
+
+    		</div><!-- /input-group -->
+    		<p><span class="help-block" style="font-size:12px"> You can use the character *  in search. For example, for the words starting 'ab' use ab*, for the words containing 'ab' use *ab*, or for the words ending with 'ab' use *ab</span></p>
+			</div>
+        }
+				</div>
+				<div class="col-md-2 column">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	@Option(currentPage.items).filterNot(_.isEmpty).map { wordList =>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="table-responsive">
+				<table class="table table-hover">
+				@wordList.grouped(4).map { group =>
+				  <tr>
+				  @group.map { word =>
+				    <td>@word.name</td>
+				  }
+				 </tr>
+				}
+				</table>
+	  			</u>
+			</div>
+			<div id="pagination" >
+	            <ul class="pagination">
+	                @currentPage.prev.map { page =>
+	                    <li class="prev">
+	                        <a href="@link(page)">&larr; Prev</a>
+	                    </li> 
+	                }.getOrElse {
+	                    <li class="prev disabled">
+	                        <a>&larr; Prev</a>
+	                    </li>
+	                }
+	                <li class="current">
+	                    <a> @(currentPage.offset + 1) - @(currentPage.offset + wordList.size) / @currentPage.total</a>
+	                </li>
+	                @currentPage.next.map { page =>
+	                    <li class="next">
+	                        <a href="@link(page)">Next &rarr;</a>
+	                    </li> 
+	                }.getOrElse {
+	                    <li class="next disabled">
+	                        <a>Next &rarr;</a>
+	                    </li>
+	                }
+	            </ul>
+        </div>
+			</div>
+		</div>
+	}
+}
